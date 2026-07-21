@@ -47,6 +47,9 @@ export default function Catalog() {
           Encuentra tu producto ideal
         </p>
         <div className="mt-4 mx-auto w-16 h-px bg-mauve-light"></div>
+        <p className="mt-4 text-xs text-gray-400">
+          {products.length} {products.length === 1 ? 'producto disponible' : 'productos disponibles'}
+        </p>
       </section>
       <main className="max-w-7xl mx-auto px-4 py-6">
         <FilterBar
