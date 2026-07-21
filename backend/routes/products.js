@@ -1,26 +1,23 @@
 const express = require('express');
 const multer = require('multer');
-const path = require('path');
+const cloudinary = require('cloudinary').v2;
+const streamifier = require('streamifier');
 const pool = require('../database');
 
 const router = express.Router();
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '..', 'uploads'));
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
-  }
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 const upload = multer({
-  storage: storage,
+  storage: multer.memoryStorage(),
   limits: { fileSize: 5 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
     const allowedTypes = /jpeg|jpg|png|webp/;
-    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+    const extname = allowedTypes.test(require('path').extname(file.originalname).toLowerCase());
     const mimetype = allowedTypes.test(file.mimetype);
     if (extname && mimetype) {
       cb(null, true);
@@ -29,6 +26,19 @@ const upload = multer({
     }
   }
 });
+
+function uploadToCloudinary(file) {
+  return new Promise((resolve, reject) => {
+    const stream = cloudinary.uploader.upload_stream(
+      { folder: 'ss-cosmeticos', resource_type: 'image' },
+      (error, result) => {
+        if (error) return reject(error);
+        resolve(result.secure_url);
+      }
+    );
+    streamifier.createReadStream(file.buffer).pipe(stream);
+  });
+}
 
 router.get('/', async (req, res) => {
   try {
@@ -76,10 +86,14 @@ router.get('/:id', async (req, res) => {
 router.post('/', upload.single('image'), async (req, res) => {
   try {
     const { name, brand, category, price, offer_price, stock } = req.body;
-    const image_url = req.file ? `/uploads/${req.file.filename}` : null;
 
     if (!name || !brand || !category || !price) {
       return res.status(400).json({ error: 'Nombre, marca, categoría y precio son requeridos' });
+    }
+
+    let image_url = null;
+    if (req.file) {
+      image_url = await uploadToCloudinary(req.file);
     }
 
     const result = await pool.query(
@@ -101,7 +115,11 @@ router.put('/:id', upload.single('image'), async (req, res) => {
   try {
     const { id } = req.params;
     const { name, brand, category, price, offer_price, stock } = req.body;
-    const image_url = req.file ? `/uploads/${req.file.filename}` : undefined;
+
+    let image_url = undefined;
+    if (req.file) {
+      image_url = await uploadToCloudinary(req.file);
+    }
 
     let query = `
       UPDATE products
