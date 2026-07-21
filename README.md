@@ -219,8 +219,6 @@ Proyecto privado — S&S Cosméticos y Accesorios © 2026
 
 <div align="center">
 
-**¿Necesitas ayuda?** Escríbeme por [WhatsApp](https://wa.me/51922625609) 💬
-
 *Hecho con amor para S&S* 🌸
 
 </div>
