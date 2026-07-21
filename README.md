@@ -261,7 +261,6 @@ ss-cosmeticos/
 | **App** | [ss-cosmetics-production.up.railway.app](https://ss-cosmetics-production.up.railway.app/) |
 | **Catálogo** | [/](https://ss-cosmetics-production.up.railway.app/) |
 | **Admin** | [/admin](https://ss-cosmetics-production.up.railway.app/admin) |
-| **WhatsApp** | [wa.me/51922625609](https://wa.me/51922625609) |
 
 ---
 
