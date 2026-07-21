@@ -8,7 +8,7 @@ export default function Header({ search, setSearch }) {
           <Link to="/" className="flex items-center gap-3 flex-shrink-0">
             <img src="/logo-ss.png" alt="S&S Cosméticos y Accesorios" className="w-10 h-10 rounded-full object-cover" />
             <div className="hidden sm:block">
-              <h1 className="text-lg font-bold text-mauve-text">S&S Cosméticos y Accesorios</h1>
+              <h1 className="text-lg font-semibold text-mauve-text tracking-wide">S&S Cosméticos</h1>
             </div>
           </Link>
 

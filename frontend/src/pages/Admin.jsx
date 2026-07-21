@@ -132,7 +132,7 @@ export default function Admin() {
             <div className="flex items-center gap-2.5">
               <img src="/logo-ss.png" alt="S&S" className="w-8 h-8 sm:w-9 sm:h-9 rounded-full object-cover" />
               <div>
-                <h1 className="text-base sm:text-lg font-bold text-mauve-text leading-tight">Panel Admin</h1>
+                <h1 className="text-base sm:text-lg font-semibold text-mauve-text tracking-wide leading-tight">Panel Admin</h1>
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -165,6 +165,10 @@ export default function Admin() {
       </header>
 
       <main className="max-w-7xl mx-auto px-3 sm:px-4 py-3 sm:py-4">
+        <div className="text-center mb-4">
+          <h2 className="text-2xl sm:text-3xl font-light tracking-wide text-mauve-text">Gestión de Productos</h2>
+          <p className="mt-1 text-xs sm:text-sm text-gray-400 font-light tracking-widest uppercase">Administra tu catálogo</p>
+        </div>
         {message.text && (
           <div className={`mb-3 p-3 rounded-xl text-sm font-medium ${
             message.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'

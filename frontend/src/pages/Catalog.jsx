@@ -39,6 +39,15 @@ export default function Catalog() {
   return (
     <div className="min-h-screen bg-mauve-bg">
       <Header search={search} setSearch={setSearch} />
+      <section className="max-w-7xl mx-auto px-4 pt-8 pb-2 text-center">
+        <h2 className="text-3xl sm:text-4xl font-light tracking-wide text-mauve-text">
+          Belleza y Estilo
+        </h2>
+        <p className="mt-2 text-sm sm:text-base text-gray-400 font-light tracking-widest uppercase">
+          Encuentra tu producto ideal
+        </p>
+        <div className="mt-4 mx-auto w-16 h-px bg-mauve-light"></div>
+      </section>
       <main className="max-w-7xl mx-auto px-4 py-6">
         <FilterBar
           selectedBrand={selectedBrand}
