@@ -37,12 +37,7 @@ export default function Header({ search, setSearch }) {
             </div>
           </div>
 
-          <Link
-            to="/admin"
-            className="px-4 py-2 text-sm font-medium text-mauve hover:bg-mauve-bg rounded-lg transition-colors"
-          >
-            Admin
-          </Link>
+
         </div>
       </div>
     </header>
