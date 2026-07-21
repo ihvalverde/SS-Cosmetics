@@ -52,7 +52,7 @@ export default function ProductList({ products, loading, onEdit, onDelete }) {
           </div>
 
           <div className="flex-1 min-w-0">
-            <h3 className="font-medium text-mauve-text text-sm truncate">{product.name}</h3>
+            <h3 className="font-medium text-mauve-text text-sm line-clamp-2">{product.name}</h3>
             <div className="flex items-center gap-1.5 text-xs text-gray-400 mt-0.5">
               <span className="font-medium text-mauve">{product.brand}</span>
               <span>·</span>
