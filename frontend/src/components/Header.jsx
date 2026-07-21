@@ -6,9 +6,10 @@ export default function Header({ search, setSearch }) {
       <div className="max-w-7xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between gap-4">
           <Link to="/" className="flex items-center gap-3 flex-shrink-0">
-            <img src="/logo-ss.png" alt="S&S Cosméticos y Accesorios" className="w-10 h-10 rounded-full object-cover" />
+            <img src="/logo-ss.png" alt="S&S Cosméticos y Accesorios" className="w-11 h-11 rounded-full object-cover shadow-sm" />
             <div className="hidden sm:block">
-              <h1 className="text-lg font-semibold text-mauve-text tracking-wide">S&S Cosméticos</h1>
+              <h1 className="text-xl font-light tracking-wider text-mauve-text">S&S</h1>
+              <p className="text-[10px] font-light tracking-[0.2em] text-gray-400 -mt-0.5 uppercase">Cosméticos y Accesorios</p>
             </div>
           </Link>
 

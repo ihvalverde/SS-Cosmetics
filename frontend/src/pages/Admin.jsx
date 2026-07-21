@@ -130,9 +130,10 @@ export default function Admin() {
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2.5 sm:py-3">
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2.5">
-              <img src="/logo-ss.png" alt="S&S" className="w-8 h-8 sm:w-9 sm:h-9 rounded-full object-cover" />
+              <img src="/logo-ss.png" alt="S&S" className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover shadow-sm" />
               <div>
-                <h1 className="text-base sm:text-lg font-semibold text-mauve-text tracking-wide leading-tight">Admin</h1>
+                <h1 className="text-lg sm:text-xl font-light tracking-wider text-mauve-text">S&S</h1>
+                <p className="text-[9px] sm:text-[10px] font-light tracking-[0.2em] text-gray-400 -mt-0.5 uppercase">Panel Admin</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
