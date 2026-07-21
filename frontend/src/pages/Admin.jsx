@@ -61,7 +61,8 @@ export default function Admin() {
       })
 
       if (!response.ok) {
-        throw new Error('Error al guardar el producto')
+        const errData = await response.json().catch(() => ({}))
+        throw new Error(errData.error || `Error HTTP ${response.status}`)
       }
 
       setMessage({

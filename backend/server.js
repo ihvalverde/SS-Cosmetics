@@ -25,4 +25,8 @@ app.get('*', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
+  console.log(`DATABASE_URL: ${process.env.DATABASE_URL ? 'Configurado' : 'NO CONFIGURADO'}`);
+  console.log(`CLOUDINARY_CLOUD_NAME: ${process.env.CLOUDINARY_CLOUD_NAME || 'NO CONFIGURADO'}`);
+  console.log(`CLOUDINARY_API_KEY: ${process.env.CLOUDINARY_API_KEY ? 'Configurado' : 'NO CONFIGURADO'}`);
+  console.log(`CLOUDINARY_API_SECRET: ${process.env.CLOUDINARY_API_SECRET ? 'Configurado' : 'NO CONFIGURADO'}`);
 });

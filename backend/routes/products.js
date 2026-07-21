@@ -107,6 +107,7 @@ router.post('/', upload.single('image'), async (req, res) => {
       name, brand, category, price, offer_price, stock, image_url
     });
   } catch (err) {
+    console.error('POST /products error:', err.message);
     res.status(500).json({ error: err.message });
   }
 });
@@ -142,6 +143,7 @@ router.put('/:id', upload.single('image'), async (req, res) => {
     }
     res.json({ id, name, brand, category, price, offer_price, stock, image_url });
   } catch (err) {
+    console.error('PUT /products error:', err.message);
     res.status(500).json({ error: err.message });
   }
 });
