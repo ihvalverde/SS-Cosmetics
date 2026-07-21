@@ -1,13 +1,22 @@
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
+const { Pool } = require('pg');
 
-const dbPath = path.join(__dirname, 'cosmeticos.db');
-const db = new sqlite3.Database(dbPath);
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
+});
 
-db.serialize(() => {
-  db.run(`
+pool.on('connect', () => {
+  console.log('Conectado a PostgreSQL');
+});
+
+pool.on('error', (err) => {
+  console.error('Error en la conexión a PostgreSQL:', err);
+});
+
+const initDB = async () => {
+  await pool.query(`
     CREATE TABLE IF NOT EXISTS products (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      id SERIAL PRIMARY KEY,
       name TEXT NOT NULL,
       brand TEXT NOT NULL,
       category TEXT NOT NULL,
@@ -15,10 +24,13 @@ db.serialize(() => {
       offer_price REAL,
       stock INTEGER DEFAULT 0,
       image_url TEXT,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `);
-});
+  console.log('Tabla products inicializada');
+};
 
-module.exports = db;
+initDB();
+
+module.exports = pool;

@@ -1,5 +1,4 @@
 node_modules/
-backend/cosmeticos.db
 backend/uploads/*
 !backend/uploads/.gitkeep
 frontend/dist/
