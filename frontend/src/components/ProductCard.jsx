@@ -84,7 +84,7 @@ export default function ProductCard({ product }) {
         <button
           onClick={handleWhatsApp}
           disabled={isOutOfStock}
-          className={`whatsapp-btn w-full py-2.5 rounded-xl text-xs font-semibold text-white flex items-center justify-center gap-1 whitespace-nowrap ${
+          className={`whatsapp-btn w-full py-2.5 rounded-xl text-xs font-semibold text-white flex items-center justify-center gap-1.5 ${
             isOutOfStock
               ? 'bg-gray-400 cursor-not-allowed'
               : 'bg-[#25D366] hover:bg-[#128C7E]'
