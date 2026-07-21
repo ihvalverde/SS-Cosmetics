@@ -4,3 +4,7 @@ backend/uploads/*
 frontend/dist/
 .env
 *.log
+backend/cosmeticos.db
+backend/products-export.json
+backend/seed-pg.js
+backend/export-sqlite.js
