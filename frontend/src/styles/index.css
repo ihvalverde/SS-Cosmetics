@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.product-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(210, 140, 168, 0.2);
+}
+
+.whatsapp-btn {
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.whatsapp-btn:hover {
+  background-color: #128C7E;
+}
+
+.whatsapp-btn:active {
+  transform: scale(0.98);
+}
+
+.filter-chip {
+  transition: all 0.2s ease;
+}
+
+.filter-chip:hover {
+  background-color: #EAA7C0;
+  color: white;
+}
+
+.filter-chip.active {
+  background-color: #D28CA8;
+  color: white;
+}
