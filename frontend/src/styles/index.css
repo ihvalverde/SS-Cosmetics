@@ -18,11 +18,7 @@ body {
 }
 
 .whatsapp-btn {
-  transition: background-color 0.2s ease, transform 0.1s ease;
-}
-
-.whatsapp-btn:hover {
-  background-color: #128C7E;
+  transition: transform 0.1s ease;
 }
 
 .whatsapp-btn:active {
