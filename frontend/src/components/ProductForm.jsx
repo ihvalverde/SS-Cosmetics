@@ -28,14 +28,7 @@ export default function ProductForm({ onSubmit, initialData, onCancel }) {
       })
       setPreview(initialData.image_url || null)
     } else {
-      setFormData({
-        name: '',
-        brand: '',
-        category: '',
-        price: '',
-        offer_price: '',
-        stock: '0'
-      })
+      setFormData({ name: '', brand: '', category: '', price: '', offer_price: '', stock: '0' })
       setPreview(null)
       setImage(null)
     }
@@ -67,116 +60,84 @@ export default function ProductForm({ onSubmit, initialData, onCancel }) {
     data.append('price', formData.price)
     data.append('offer_price', formData.offer_price || '')
     data.append('stock', formData.stock)
-    if (image) {
-      data.append('image', image)
-    }
+    if (image) data.append('image', image)
 
     await onSubmit(data)
     setSubmitting(false)
 
     if (!initialData) {
-      setFormData({
-        name: '',
-        brand: '',
-        category: '',
-        price: '',
-        offer_price: '',
-        stock: '0'
-      })
+      setFormData({ name: '', brand: '', category: '', price: '', offer_price: '', stock: '0' })
       setImage(null)
       setPreview(null)
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-3">
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Imagen del producto
-        </label>
-        <div className="flex items-center gap-4">
+        <label className="block text-xs font-medium text-gray-500 mb-1">Imagen</label>
+        <div className="flex items-center gap-3">
           {preview && (
-            <div className="w-20 h-20 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
+            <div className="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
               <img src={preview} alt="Preview" className="w-full h-full object-cover" />
             </div>
           )}
           <label className="flex-1 cursor-pointer">
-            <div className="border-2 border-dashed border-gray-300 rounded-xl p-4 text-center hover:border-mauve transition-colors">
-              <svg className="w-8 h-8 mx-auto text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              <span className="text-sm text-gray-500">
+            <div className="border-2 border-dashed border-gray-300 rounded-xl py-3 text-center hover:border-mauve transition-colors">
+              <span className="text-xs text-gray-500">
                 {image ? image.name : 'Seleccionar imagen'}
               </span>
             </div>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              className="hidden"
-            />
+            <input type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
           </label>
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Nombre del producto *
-        </label>
+        <label className="block text-xs font-medium text-gray-500 mb-1">Nombre *</label>
         <input
           type="text"
           name="name"
           value={formData.name}
           onChange={handleChange}
           required
-          className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-mauve focus:border-transparent"
-          placeholder="Ej: Base de maquillaje..."
+          className="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-mauve focus:border-transparent"
+          placeholder="Nombre del producto"
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-3">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Marca *
-          </label>
+          <label className="block text-xs font-medium text-gray-500 mb-1">Marca *</label>
           <select
             name="brand"
             value={formData.brand}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-mauve focus:border-transparent bg-white"
+            className="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-mauve focus:border-transparent bg-white"
           >
-            <option value="">Seleccionar</option>
-            {brands.map(brand => (
-              <option key={brand} value={brand}>{brand}</option>
-            ))}
+            <option value="">Marca</option>
+            {brands.map(b => <option key={b} value={b}>{b}</option>)}
           </select>
         </div>
-
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Categoría *
-          </label>
+          <label className="block text-xs font-medium text-gray-500 mb-1">Categoría *</label>
           <select
             name="category"
             value={formData.category}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-mauve focus:border-transparent bg-white"
+            className="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-mauve focus:border-transparent bg-white"
           >
-            <option value="">Seleccionar</option>
-            {categories.map(category => (
-              <option key={category} value={category}>{category}</option>
-            ))}
+            <option value="">Categoría</option>
+            {categories.map(c => <option key={c} value={c}>{c}</option>)}
           </select>
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-3">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Precio (S/) *
-          </label>
+          <label className="block text-xs font-medium text-gray-500 mb-1">Precio *</label>
           <input
             type="number"
             name="price"
@@ -185,15 +146,12 @@ export default function ProductForm({ onSubmit, initialData, onCancel }) {
             required
             min="0"
             step="0.01"
-            className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-mauve focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-mauve focus:border-transparent"
             placeholder="0.00"
           />
         </div>
-
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Precio oferta (S/)
-          </label>
+          <label className="block text-xs font-medium text-gray-500 mb-1">Oferta</label>
           <input
             type="number"
             name="offer_price"
@@ -201,41 +159,37 @@ export default function ProductForm({ onSubmit, initialData, onCancel }) {
             onChange={handleChange}
             min="0"
             step="0.01"
-            className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-mauve focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-mauve focus:border-transparent"
             placeholder="0.00"
           />
         </div>
-
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Stock
-          </label>
+          <label className="block text-xs font-medium text-gray-500 mb-1">Stock</label>
           <input
             type="number"
             name="stock"
             value={formData.stock}
             onChange={handleChange}
             min="0"
-            className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-mauve focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-mauve focus:border-transparent"
             placeholder="0"
           />
         </div>
       </div>
 
-      <div className="flex gap-3 pt-2">
+      <div className="flex gap-2 pt-1">
         <button
           type="submit"
           disabled={submitting}
-          className="flex-1 py-3 bg-mauve text-white font-semibold rounded-xl hover:bg-mauve-light transition-colors disabled:opacity-50"
+          className="flex-1 py-2.5 bg-mauve text-white text-sm font-semibold rounded-xl hover:bg-mauve-light transition-colors disabled:opacity-50"
         >
-          {submitting ? 'Guardando...' : initialData ? 'Actualizar' : 'Agregar Producto'}
+          {submitting ? 'Guardando...' : initialData ? 'Actualizar' : 'Agregar'}
         </button>
-
         {onCancel && (
           <button
             type="button"
             onClick={onCancel}
-            className="px-6 py-3 border border-gray-300 text-gray-700 font-semibold rounded-xl hover:bg-gray-50 transition-colors"
+            className="px-4 py-2.5 border border-gray-300 text-gray-600 text-sm font-medium rounded-xl hover:bg-gray-50 transition-colors"
           >
             Cancelar
           </button>
