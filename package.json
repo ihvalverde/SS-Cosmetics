@@ -4,8 +4,10 @@
   "description": "S&S Cosméticos y Accesorios - Catálogo PWA",
   "scripts": {
     "postinstall": "cd backend && npm install",
-    "install-all": "cd backend && npm install && cd ../frontend && npm install",
-    "build": "cd frontend && npm install && npm run build",
+    "install-all": "cd backend && npm install && cd ../frontend && npm install && cd ../frontend-admin && npm install",
+    "build": "cd frontend && npm install && npm run build && cd ../frontend-admin && npm install && npm run build",
+    "build:catalog": "cd frontend && npm install && npm run build",
+    "build:admin": "cd frontend-admin && npm install && npm run build",
     "start": "cd backend && node server.js",
     "dev": "cd backend && npm run dev"
   },
