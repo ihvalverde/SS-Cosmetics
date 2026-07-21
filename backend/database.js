@@ -14,21 +14,25 @@ pool.on('error', (err) => {
 });
 
 const initDB = async () => {
-  await pool.query(`
-    CREATE TABLE IF NOT EXISTS products (
-      id SERIAL PRIMARY KEY,
-      name TEXT NOT NULL,
-      brand TEXT NOT NULL,
-      category TEXT NOT NULL,
-      price REAL NOT NULL,
-      offer_price REAL,
-      stock INTEGER DEFAULT 0,
-      image_url TEXT,
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )
-  `);
-  console.log('Tabla products inicializada');
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS products (
+        id SERIAL PRIMARY KEY,
+        name TEXT NOT NULL,
+        brand TEXT NOT NULL,
+        category TEXT NOT NULL,
+        price REAL NOT NULL,
+        offer_price REAL,
+        stock INTEGER DEFAULT 0,
+        image_url TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+    console.log('Tabla products inicializada');
+  } catch (err) {
+    console.error('Error inicializando DB:', err.message);
+  }
 };
 
 initDB();
