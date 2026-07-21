@@ -8,3 +8,5 @@ backend/cosmeticos.db
 backend/products-export.json
 backend/seed-pg.js
 backend/export-sqlite.js
+backend/migrate-to-railway.js
+cleanup-duplicates.sql
