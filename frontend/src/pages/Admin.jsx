@@ -132,7 +132,7 @@ export default function Admin() {
             <div className="flex items-center gap-2.5">
               <img src="/logo-ss.png" alt="S&S" className="w-8 h-8 sm:w-9 sm:h-9 rounded-full object-cover" />
               <div>
-                <h1 className="text-base sm:text-lg font-semibold text-mauve-text tracking-wide leading-tight">Panel Admin</h1>
+                <h1 className="text-base sm:text-lg font-semibold text-mauve-text tracking-wide leading-tight">Admin</h1>
               </div>
             </div>
             <div className="flex items-center gap-2">
