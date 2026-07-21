@@ -11,10 +11,11 @@ export default function Catalog() {
   const [search, setSearch] = useState('')
   const [selectedBrand, setSelectedBrand] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('')
+  const [sortBy, setSortBy] = useState('alpha-asc')
 
   useEffect(() => {
     fetchProducts()
-  }, [selectedBrand, selectedCategory, search])
+  }, [selectedBrand, selectedCategory, search, sortBy])
 
   const fetchProducts = async () => {
     setLoading(true)
@@ -23,6 +24,7 @@ export default function Catalog() {
       if (selectedBrand) params.append('brand', selectedBrand)
       if (selectedCategory) params.append('category', selectedCategory)
       if (search) params.append('search', search)
+      params.append('sort', sortBy)
 
       const response = await fetch(`${API_BASE}/products?${params}`)
       const data = await response.json()
@@ -43,6 +45,8 @@ export default function Catalog() {
           setSelectedBrand={setSelectedBrand}
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
+          sortBy={sortBy}
+          setSortBy={setSortBy}
         />
         <ProductGrid products={products} loading={loading} />
       </main>

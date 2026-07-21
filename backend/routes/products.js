@@ -42,7 +42,7 @@ function uploadToCloudinary(file) {
 
 router.get('/', async (req, res) => {
   try {
-    const { brand, category, search } = req.query;
+    const { brand, category, search, sort } = req.query;
     let query = 'SELECT * FROM products WHERE 1=1';
     const params = [];
     let idx = 1;
@@ -61,7 +61,14 @@ router.get('/', async (req, res) => {
       idx++;
     }
 
-    query += ' ORDER BY name ASC';
+    const sortOptions = {
+      'alpha-asc': 'name ASC',
+      'alpha-desc': 'name DESC',
+      'newest': 'created_at DESC',
+      'price-asc': 'price ASC',
+      'price-desc': 'price DESC'
+    };
+    query += ` ORDER BY ${sortOptions[sort] || 'name ASC'}`;
 
     const result = await pool.query(query, params);
     res.json(result.rows);
